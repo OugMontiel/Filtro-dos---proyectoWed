@@ -156,3 +156,27 @@ button{
 .Extra h1{
     padding-bottom: 1em;
 }
+
+footer{
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    color: var(--color-Blanco);
+    gap: 1em;
+}
+footer div div{
+    height: 1px;
+    background: var(--color-Naranja);
+    width: 5em;
+    margin-bottom: 1.5em;
+}
+footer div:last-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+footer div div:last-child{
+    display: flex;
+    gap: 1em;
+}
