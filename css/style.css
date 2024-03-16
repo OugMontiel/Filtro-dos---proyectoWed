@@ -29,3 +29,45 @@ header a{
     text-decoration: none;
     color: var(--color-Blanco);
 }
+
+section{
+    height: 100vh;
+    padding: 2em;
+}
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+button{
+    color: var(--color-Blanco);
+    background: var(--color-Naranja);
+    height: 2em;
+    width: auto;
+    padding:0 1em;
+}
+
+.Home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Home h1{
+    text-align: center;
+    color: var(--color-Naranja);
+    font-size: 3rem;
+}
+.Home p{
+    text-align: center;
+    color: var(--color-Blanco);
+    font-size: 1rem;
+}
+.Home div{
+    display: flex;
+    flex-direction: column;
+}
+.Home button{
+    align-self:center;
+    margin-top: 1em;
+}
