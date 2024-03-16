@@ -71,3 +71,36 @@ button{
     align-self:center;
     margin-top: 1em;
 }
+
+.About{
+    display: flex;
+    flex-direction: column;
+}
+.About div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-Blanco);
+    gap: 1em;
+}
+.About div p:first-child{
+    color: var(--color-Naranja);
+}
+
+.Menu{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: var(--color-Blanco);
+}
+.Menu div div{
+    background: var(--color-Piel);
+    margin: 2em;
+    color: var(--color-NegroDos);
+}
+.Menu div div p:last-child{
+    color: var(--color-Naranja);
+}
