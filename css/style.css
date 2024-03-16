@@ -99,8 +99,22 @@ button{
 .Menu div div{
     background: var(--color-Piel);
     margin: 2em;
+    padding: 1em;
     color: var(--color-NegroDos);
+    position: relative;
 }
 .Menu div div p:last-child{
     color: var(--color-Naranja);
+}
+.Menu p:first-child{
+    color: var(--color-Naranja);
+    margin: 2em;
+}
+.Menu h1{
+    font-size: 2em;
+}
+.Menu box-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
 }
