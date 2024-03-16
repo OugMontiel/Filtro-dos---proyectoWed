@@ -118,3 +118,41 @@ button{
     top: 0;
     right: 0;
 }
+
+.Service{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: var(--color-Blanco);
+    gap: 1em;
+}
+.Service p:first-child{
+    color: var(--color-Naranja);
+}
+.Service h2{
+    color: var(--color-Naranja);
+}
+.Service div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1em;
+    gap: 1em;
+}
+
+.Extra{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+    text-align: center;
+}
+.Extra div{
+    background: var(--color-Piel);
+    padding: 1em;
+}
+.Extra h1{
+    padding-bottom: 1em;
+}
