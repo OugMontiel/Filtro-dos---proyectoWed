@@ -7,3 +7,25 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+body{
+    background: var(--color-NegroUno);
+}
+header{
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--color-Naranja);
+}
+header ul{
+    background: var(--color-Azul);
+}
+header li{
+    list-style: none;
+}
+header li:hover{
+    border: 1px solid var(--color-NegroUno);
+}
+header a{
+    text-decoration: none;
+    color: var(--color-Blanco);
+}
