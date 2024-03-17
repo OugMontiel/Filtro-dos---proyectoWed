@@ -46,6 +46,10 @@ button{
     width: auto;
     padding:0 1em;
 }
+h1{
+    font-weight: 500;
+    font-size: 2rem;
+}
 
 .Home{
     display: flex;
@@ -139,6 +143,9 @@ button{
     justify-content: center;
     margin: 1em;
     gap: 1em;
+}
+.Service div div img{
+    padding:0 1em;
 }
 
 .Extra{
