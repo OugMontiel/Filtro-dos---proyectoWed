@@ -5,3 +5,107 @@
     border: 0;
     box-sizing: border-box;
 }
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+
+main{
+    background: var(--color-fondo2);
+    color: var(--color-letras);
+    
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    height: 100vh;
+    width: 100%;
+    padding: 2em;
+}
+
+.Barra{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2em 0;
+}
+.Barra a{
+    color: var(--color-letras);
+}
+.Barra li{
+    padding: 1em 0;
+}
+
+.Selecion{
+    text-align: center;
+    border: 1px solid var(--color-Boton);
+    border-right: 0;
+    border-radius: 2em 0 0 2em;
+    font-weight: bold;
+    
+}
+
+.content{
+    border: 1px solid var(--color-Boton);
+    padding: 2em;
+    border-radius: 3em;
+    background: var(--color-fondo);
+}
+.content h1{
+    padding: 0 0 1em 0 ;
+    font-size: 2rem;
+}
+article{
+    overflow: scroll;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(2,1fr);
+    grid-gap: 1.5em;
+}
+.producto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border: 1px solid var(--color-producto);
+    background: var(--color-producto);
+    border-radius: 1em;
+}
+.producto img{
+    max-height: 70%;
+}
+.producto div{
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    border: 2px solid var(--color-Boton);
+    border-radius: 1em;
+    padding: 0.5em;
+
+    background: var(--color-fondo);
+    color: var(--color-Boton);
+}
+.producto div span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+button{
+    height: 2em;
+    width: 5em;
+
+    border-radius: 1em;
+    background: var(--color-Boton);
+    color: var(--color-fondo);
+}
