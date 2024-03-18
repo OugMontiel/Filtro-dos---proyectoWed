@@ -8,7 +8,7 @@
 img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 li{
     list-style: none;
@@ -56,16 +56,21 @@ main{
     padding: 2em;
     border-radius: 3em;
     background: var(--color-fondo);
+    /* height: 90vh; */
+    overflow: scroll;
 }
 .content h1{
     padding: 0 0 1em 0 ;
     font-size: 2rem;
 }
 article{
-    overflow: scroll;
+    /* height: 100%; */
+    /* overflow: scroll; */
+
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(2,1fr);
+    
     grid-gap: 1.5em;
 }
 .producto{
@@ -80,7 +85,9 @@ article{
     border-radius: 1em;
 }
 .producto img{
+    padding: .5em;
     max-height: 70%;
+    max-width: 100%;
 }
 .producto div{
     flex-grow: 1;
@@ -103,9 +110,9 @@ article{
 }
 button{
     height: 2em;
-    width: 5em;
+    width: 7em;
 
-    border-radius: 1em;
+    border-radius: .5em;
     background: var(--color-Boton);
-    color: var(--color-fondo);
+    color: var(--color-Boton-letras);
 }
