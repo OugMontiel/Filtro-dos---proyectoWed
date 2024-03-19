@@ -119,3 +119,39 @@ button{
     background: var(--color-Boton);
     color: var(--color-Boton-letras);
 }
+.BarraDos{
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    main{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;    
+    }
+    
+    .Barra {
+        flex-direction: row;
+        padding: 1em 0;
+    }
+    .Barra ul{
+        display: none;
+    }
+    .Barra p:last-child{
+        display: none;
+    }
+    .Barra ul:nth-child(2){
+        display: flex;
+        flex-direction: column;
+    }
+    .Barra li{
+        padding: .5em 0;
+    }
+
+    .BarraDos{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        padding: 1em 0;
+    }   
+  }
+  
