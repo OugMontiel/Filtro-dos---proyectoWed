@@ -152,7 +152,7 @@ button{
 
     
     .Selecion{
-        text-align: auto;
+        text-align: start;
         border: 0;
         font-weight: normal;
     }
