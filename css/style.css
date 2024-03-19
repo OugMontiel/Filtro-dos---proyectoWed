@@ -64,15 +64,19 @@ main{
     font-size: 2rem;
 }
 article{
-    height: 100%;
+    height: 90%;
     overflow: scroll;
 
     display: grid;
     grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(2,1fr);
     
     grid-gap: 1.5em;
 }
 .producto{
+    /* max-height: 50%; */
+    /* max-width: 50%; */
+
     display: flex;
     flex-direction: column;
     justify-content: center;
