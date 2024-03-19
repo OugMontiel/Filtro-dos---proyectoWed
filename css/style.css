@@ -111,6 +111,7 @@ article{
     justify-content: space-between;
     align-items: center;
 }
+
 button{
     height: 2em;
     width: 7em;
@@ -126,7 +127,9 @@ button{
 @media screen and (max-width: 1200px) {
     main{
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;    
+        grid-template-rows: auto auto;   
+
+        padding: .5em; 
     }
     
     .Barra {
@@ -147,11 +150,36 @@ button{
         padding: .5em 0;
     }
 
+    
+    .Selecion{
+        text-align: auto;
+        border: 0;
+        font-weight: normal;
+    }
+    
+    .content{
+        padding: 1em;
+        border-radius: 2em;
+    }
+    .content h1{
+        padding: 0 0 .5em 0 ;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    article{
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: .5em;
+    }
+
+    button{
+        width: 5em;
+    }
+    
     .BarraDos{
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between;
         padding: 1em 0;
-    }   
+    }
   }
   
