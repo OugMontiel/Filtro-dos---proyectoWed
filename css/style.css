@@ -124,15 +124,20 @@ button{
     display: none;
 }
 
+.btn{
+    display: none;
+}
+
 @media screen and (max-width: 1200px) {
     main{
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;   
+        grid-template-rows: 8% auto 8%;   
 
         padding: .5em; 
     }
     
     .Barra {
+        height: 3em;
         flex-direction: row;
         padding: 1em 0;
     }
@@ -142,12 +147,34 @@ button{
     .Barra p:last-child{
         display: none;
     }
-    .Barra ul:nth-child(2){
-        display: flex;
-        flex-direction: column;
-    }
     .Barra li{
         padding: .5em 0;
+    }
+    .Menu{
+        display: none;
+    }
+    .btn{
+        display: block;
+
+        height: 3em;
+        width: 3em;
+
+        border-radius: .5em;
+        background: transparent;
+        /* color: var(--color-Boton-letras); */
+    }
+
+    .visible{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        font-size: 2em;
+        
+        background-color: var(--color-fondo2);
+        position: absolute;
+        margin-top: 10%;
+        width: 97%;
     }
 
     
