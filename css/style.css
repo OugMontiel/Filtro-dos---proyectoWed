@@ -171,9 +171,10 @@ button{
 
         font-size: 2em;
         
+        /* border: 1px solid var(--color-fondo2); */
         background-color: var(--color-fondo2);
         position: absolute;
-        margin-top: 10%;
+        margin-top: 8%;
         width: 97%;
     }
 
