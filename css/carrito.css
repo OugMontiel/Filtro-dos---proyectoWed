@@ -26,8 +26,7 @@ article{
 }
 .producto img{
     padding: .5em;
-    max-height: 70%;
-    max-width: 100%;
+    max-width: 10%;
 }
 .producto div{
     flex-grow: 1;
