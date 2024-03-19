@@ -57,19 +57,18 @@ main{
     border-radius: 3em;
     background: var(--color-fondo);
     /* height: 90vh; */
-    overflow: scroll;
+    overflow: hidden;
 }
 .content h1{
     padding: 0 0 1em 0 ;
     font-size: 2rem;
 }
 article{
-    /* height: 100%; */
-    /* overflow: scroll; */
+    height: 100%;
+    overflow: scroll;
 
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(2,1fr);
     
     grid-gap: 1.5em;
 }
@@ -78,7 +77,7 @@ article{
     flex-direction: column;
     justify-content: center;
 
-    overflow: hidden;
+    /* overflow: hidden; */
 
     border: 1px solid var(--color-producto);
     background: var(--color-producto);
