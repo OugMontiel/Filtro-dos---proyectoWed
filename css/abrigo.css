@@ -1,6 +1,9 @@
-.producto {
+.Abrigo {
+    display: flex;
+}
+.Camisas {
     display: none;
 }
-.Abrigo {
-    display: block;
+.Pantalon {
+    display: none;
 }
