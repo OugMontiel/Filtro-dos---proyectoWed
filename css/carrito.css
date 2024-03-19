@@ -30,6 +30,11 @@ article{
     padding: 0 1em;
     max-width: 15%;
 }
+.producto a{
+    display: flex;
+    justify-content: center;
+    width: 10%;
+}
 .producto div{
     flex-grow: 1;
 
@@ -55,6 +60,7 @@ article{
 .piede{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .piede button{
     width: 10em;
