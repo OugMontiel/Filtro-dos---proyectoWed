@@ -14,6 +14,8 @@ header{
     display: flex;
     justify-content: space-between;
 
+    padding: 1em;
+
     color: var(--color-Naranja);
 }
 header ul{
@@ -187,10 +189,38 @@ footer div:last-child{
 }
 footer div div:last-child{
     display: flex;
+    flex-direction: row;
     gap: 1em;
 }
 
-@media screen and (min-width: 1200px) {
+.Desple{
+    display: none;
+}
+.btn{
+    display: block;
+    align-self: center;
+
+    height: 100%;
+
+    border-radius: .5em;
+    background: transparent;
+}
+
+.visible{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 2em;
+
+    background:var(--color-Azul);
+
+    position: absolute;
+    margin-top: 10%;
+    width: 100%;
+}
+
+@media screen and (min-width: 500px) {
     header{
         padding: 1em 3em;
     }
@@ -210,6 +240,12 @@ footer div div:last-child{
     }
     header li:hover{
         border: 1px solid var(--color-Naranja);
+    }
+    .Desple{
+        display: flex;
+    }
+    .btn{
+        display: none;
     }
 
     section{

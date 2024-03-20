@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/dist/boxicons.js' rel='stylesheet'>
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="Js/main.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
     <header>
         <h1>Foods</h1>
-        <div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#service">Service</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+        <button onclick="Desplegable()" class="btn">
+            <box-icon name="menu" color="#ff702a"></box-icon> 
+        </button>
+        <div class="Desple" id="Desple">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact</a></li>
         </div>
     </header>
     <main>
@@ -126,8 +127,8 @@
             <h1>Contact Us</h1>
             <div class="linea"></div>
             <div>
-                <box-icon type='logo' name='instagram'></box-icon>
-                <box-icon name='github' type='logo' ></box-icon>
+                <box-icon type='logo' name='instagram' color='#ffffff'></box-icon>
+                <box-icon name='github' type='logo' color='#ffffff'></box-icon>
                 <box-icon name='linkedin-square' type='logo' color='#ffffff' ></box-icon>
             </div>
         </div>
