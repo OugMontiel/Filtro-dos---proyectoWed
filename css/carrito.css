@@ -105,7 +105,7 @@ article{
         position: relative;
     }
     .producto img{
-        grid-area: 1/1/63;
+        grid-area: 1/1/6/3;
         padding: 0 1em;
         max-width: 100%;
     }
