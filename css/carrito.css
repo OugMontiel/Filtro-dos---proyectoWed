@@ -2,7 +2,6 @@
     display: grid;
 
     grid-template-rows: 1fr 10fr 1fr;
-
 }
 article{
     overflow: scroll;
@@ -37,7 +36,7 @@ article{
 }
 .producto div{
     flex-grow: 1;
-
+    
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -46,7 +45,7 @@ article{
     border: 0;
     border-radius: 0;
     padding: 0;
-
+    
     background: var(--color-fondo2);
     color: var(--color-Boton);
 }
@@ -56,6 +55,9 @@ article{
     align-items: center;
 
     border: 1px solid var(--color-Boton);
+}
+.producto div p:first-child{
+    font-weight: bold;
 }
 .piede{
     display: flex;
@@ -78,4 +80,58 @@ article{
 .piede div div{
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 1200px) {
+    article{
+        grid-template-rows: auto;
+    }
+    .producto{
+        /* display: flex; */
+        /* flex-direction: row; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        /* gap: 1em; */
+
+        border: 0;
+        background: var(--color-fondo2);
+        border-radius: 1em;
+
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(8,1fr);
+        
+        /* overflow: hidden; */
+        position: relative;
+    }
+    .producto img{
+        grid-area: 1/1/63;
+        padding: 0 1em;
+        max-width: 100%;
+    }
+    .producto a{
+        position: absolute;
+        top: 1em;
+        right: .5em;
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        width: 10%;
+    }
+    .producto div span{
+        border: 0;
+    }
+    .producto div{
+        text-align: center;
+    }
+    
+    .piede button{
+        width: 7em;
+    }
+    .piede div button{
+        height: 3em;
+    }
+    .piede div{
+        padding: .5em;
+    }
 }
