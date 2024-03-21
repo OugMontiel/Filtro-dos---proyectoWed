@@ -108,6 +108,7 @@ article{
         grid-area: 1/1/6/3;
         padding: 0 1em;
         max-width: 100%;
+        object-fit: contain;
     }
     .producto a{
         position: absolute;
