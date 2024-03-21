@@ -17,13 +17,13 @@ Dispositivos de escritorio y Celulares
 
 ## Ecommer campus
 
-![CampusShopCelular](C:\Users\HP\Downloads\CampusShopCelular.gif)
+![CampusShopCelular](Storage/video/CampusShopCelular.gif)
 
-![CampusShopPc](C:\Users\HP\Downloads\CampusShopPc.gif)
+![CampusShopPc](Storage/video/CampusShopPc.gif)
 
 ## Landing pages de hamburguesa
 
-![FoodCelular](C:\Users\HP\Downloads\FoodCelular.gif)
+![FoodCelular](Storage/video/FoodCelular.gif)
 
-![FoodPc](C:\Users\HP\Downloads\FoodPc.gif)
+![FoodPc](Storage/video/FoodPc.gif)
 
