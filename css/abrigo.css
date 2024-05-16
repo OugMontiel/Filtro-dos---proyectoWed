@@ -1,0 +1,9 @@
+.Abrigo {
+    display: flex;
+}
+.Camisas {
+    display: none;
+}
+.Pantalon {
+    display: none;
+}

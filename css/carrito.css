@@ -1,0 +1,137 @@
+.content{
+    display: grid;
+
+    grid-template-rows: 1fr 10fr 1fr;
+}
+article{
+    overflow: scroll;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3,1fr);
+    
+    grid-gap: 1em;
+}
+.producto{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+
+    /* overflow: hidden; */
+
+    border: 0;
+    background: var(--color-fondo2);
+    border-radius: 1em;
+}
+.producto img{
+    padding: 0 1em;
+    max-width: 15%;
+}
+.producto a{
+    display: flex;
+    justify-content: center;
+    width: 10%;
+}
+.producto div{
+    flex-grow: 1;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0.8em;
+    
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    
+    background: var(--color-fondo2);
+    color: var(--color-Boton);
+}
+.producto div span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid var(--color-Boton);
+}
+.producto div p:first-child{
+    font-weight: bold;
+}
+.piede{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.piede button{
+    width: 10em;
+}
+.piede div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 1em;
+    background: var(--color-fondo2);
+    /* width: auto; */
+    padding: 0 1em;
+}
+.piede div div{
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 1200px) {
+    article{
+        grid-template-rows: auto;
+    }
+    .producto{
+        /* display: flex; */
+        /* flex-direction: row; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        /* gap: 1em; */
+
+        border: 0;
+        background: var(--color-fondo2);
+        border-radius: 1em;
+
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(8,1fr);
+        
+        /* overflow: hidden; */
+        position: relative;
+    }
+    .producto img{
+        grid-area: 1/1/6/3;
+        padding: 0 1em;
+        max-width: 100%;
+    }
+    .producto a{
+        position: absolute;
+        top: 1em;
+        right: .5em;
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        width: 10%;
+    }
+    .producto div span{
+        border: 0;
+    }
+    .producto div{
+        text-align: center;
+    }
+    
+    .piede button{
+        width: 7em;
+    }
+    .piede div button{
+        height: 3em;
+    }
+    .piede div{
+        padding: .5em;
+    }
+}
