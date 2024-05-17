@@ -5,11 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "json": "json-server src/js/bd/bd.json -p 5101",
+    "server": "npm run json & npm run dev",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "lit": "^3.1.2"
+    "lit": "^3.1.2",
+    "async-prompt": "^1.0.1",
+    "json-server": "^1.0.0-alpha.23"
   },
   "devDependencies": {
     "vite": "^5.2.0"
