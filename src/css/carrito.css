@@ -1,18 +1,20 @@
-.content{
+.content {
     display: grid;
 
     grid-template-rows: 1fr 10fr 1fr;
 }
-article{
+
+article {
     overflow: scroll;
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3,1fr);
-    
+    grid-template-rows: repeat(3, 1fr);
+
     grid-gap: 1em;
 }
-.producto{
+
+.producto {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -25,49 +27,57 @@ article{
     background: var(--color-fondo2);
     border-radius: 1em;
 }
-.producto img{
+
+.producto img {
     padding: 0 1em;
     max-width: 15%;
 }
-.producto a{
+
+.producto a {
     display: flex;
     justify-content: center;
     width: 10%;
 }
-.producto div{
+
+.producto div {
     flex-grow: 1;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: start;
     gap: 0.8em;
-    
+
     border: 0;
     border-radius: 0;
     padding: 0;
-    
+
     background: var(--color-fondo2);
     color: var(--color-Boton);
 }
-.producto div span{
+
+.producto div span {
     display: flex;
     justify-content: center;
     align-items: center;
 
     border: 1px solid var(--color-Boton);
 }
-.producto div p:first-child{
+
+.producto div p:first-child {
     font-weight: bold;
 }
-.piede{
+
+.piede {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.piede button{
+
+.piede button {
     width: 10em;
 }
-.piede div{
+
+.piede div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,16 +87,18 @@ article{
     /* width: auto; */
     padding: 0 1em;
 }
-.piede div div{
+
+.piede div div {
     display: flex;
     flex-direction: column;
 }
 
 @media screen and (max-width: 1200px) {
-    article{
+    article {
         grid-template-rows: auto;
     }
-    .producto{
+
+    .producto {
         /* display: flex; */
         /* flex-direction: row; */
         /* justify-content: center; */
@@ -98,18 +110,20 @@ article{
         border-radius: 1em;
 
         display: grid;
-        grid-template-columns: repeat(2,1fr);
-        grid-template-rows: repeat(8,1fr);
-        
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+
         /* overflow: hidden; */
         position: relative;
     }
-    .producto img{
+
+    .producto img {
         grid-area: 1/1/6/3;
         padding: 0 1em;
         max-width: 100%;
     }
-    .producto a{
+
+    .producto a {
         position: absolute;
         top: 1em;
         right: .5em;
@@ -118,20 +132,24 @@ article{
         /* align-items: center; */
         width: 10%;
     }
-    .producto div span{
+
+    .producto div span {
         border: 0;
     }
-    .producto div{
+
+    .producto div {
         text-align: center;
     }
-    
-    .piede button{
+
+    .piede button {
         width: 7em;
     }
-    .piede div button{
+
+    .piede div button {
         height: 3em;
     }
-    .piede div{
+
+    .piede div {
         padding: .5em;
     }
 }
