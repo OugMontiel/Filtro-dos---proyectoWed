@@ -1,8 +1,33 @@
 import { html, css, LitElement } from 'lit';
+import {
+    getAbrigo,
+    getCamiseta,
+    getPantalon,
+    getCarrito
+} from "./bd.js";
 
 export class productos extends LitElement {
-    constructor() {
-        super()
+    static properties = { //Se cargan las variables
+        productosAbrigo: { type: Array },
+        productosCamiseta: { type: Array },
+        productosPantalon: { type: Array },
+    }
+    constructor() { //Se inicializan las variables
+        super();
+        this.productosAbrigo = [];
+        this.productosCamiseta = [];
+        this.productosPantalon = [];
+        this.loadProducts(); //Esta es una funcion asincrona
+    }
+    async loadProducts() {
+        try { 
+            this.productosAbrigo = await getAbrigo();
+            this.productosCamiseta = await getCamiseta();
+            this.productosPantalon = await getPantalon();
+            this.requestUpdate(); //es una función integrada de la clase LitElement. Cuando se llama a requestUpdate(), se programa una actualización del componente, lo que implica que render() se ejecutará de nuevo para actualizar el DOM con los datos más recientes
+        } catch (error) {
+            console.error('Error loading products:', error);
+        }
     }
     static styles = css`
     .producto {
@@ -55,23 +80,25 @@ export class productos extends LitElement {
         color: var(--color-Boton-letras);
     }
     `;
-
     render() {
         return html`
-        <div class="producto Abrigo">
-            <img src="Storage/img/abrigos/01.png" alt="">
-            <div>
-                <p>Abrigo 01</p>
-                <span>
-                    <p>$ 1300</p>
-                    <button>
-                        Agregar
-                    </button>
-                </span>
-            </div>
-        </div> 
+            ${this.productosPantalon.map(producto => html`
+                <div class="producto Abrigo">
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <div>
+                  <p>${producto.nombre}</p>
+                  <span>
+                    <p>$${producto.precio}</p>
+                    <button>Agregar</button>
+                  </span>
+                </div>
+              </div>
+            
+            `)}
+        
         `
-    };
+      }
+
 }
 
 export class Barra extends LitElement {
@@ -79,14 +106,14 @@ export class Barra extends LitElement {
         super()
     }
     static styles = css`
-    `;
+                `;
 
     render() {
         return html`
-        <ul>
+            < ul >
             <li><a href="src/views/carrito.html">Carrito</a></li>
-        </ul>
-        <p>2023 Camper</p>
+        </ul >
+            <p>2023 Camper</p>
         `
     };
 }
