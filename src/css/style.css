@@ -141,7 +141,7 @@ button {
     display: none;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 600px) {
     main {
         grid-template-columns: 1fr;
         grid-template-rows: 8% auto 8%;
