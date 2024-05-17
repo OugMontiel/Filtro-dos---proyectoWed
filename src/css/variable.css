@@ -1,8 +1,8 @@
 :root {
     --color-fondo: #ffffff;
-    --color-producto: #dfca94;
-    --color-Boton: #5e5215;
-    --color-Boton-letras: var(--color-fondo);
-    --color-fondo2: #dfa3a5;
-    --color-letras: var(--color-Boton);
+    --color-producto: #b1b174;
+    --color-Boton: #f3b40f;
+    --color-Boton-letras: #58720b;
+    --color-fondo2: #97a13e;
+    --color-letras: #d1d5d6;
 }
