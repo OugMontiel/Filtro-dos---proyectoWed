@@ -8,27 +8,38 @@ import {
 
 export class productos extends LitElement {
     static properties = { //Se cargan las variables
+        productosAll: { type: Array },
         productosAbrigo: { type: Array },
         productosCamiseta: { type: Array },
         productosPantalon: { type: Array },
+        currentFilter: { type: String },
     }
     constructor() { //Se inicializan las variables
         super();
+        this.productosAll = [];
         this.productosAbrigo = [];
         this.productosCamiseta = [];
         this.productosPantalon = [];
+        this.currentFilter = "productosAll"; // Inicializa currentFilter como una cadena vacía en lugar de un array
         this.loadProducts(); //Esta es una funcion asincrona
     }
     async loadProducts() {
-        try { 
+        try {
             this.productosAbrigo = await getAbrigo();
             this.productosCamiseta = await getCamiseta();
             this.productosPantalon = await getPantalon();
+            this.productosAll = [
+                ...this.productosAbrigo,
+                ...this.productosCamiseta,
+                ...this.productosPantalon
+            ];
+            this.currentFilter= "productos" + document.querySelector(".Selecion").id; // Añade "producto " antes del id
             this.requestUpdate(); //es una función integrada de la clase LitElement. Cuando se llama a requestUpdate(), se programa una actualización del componente, lo que implica que render() se ejecutará de nuevo para actualizar el DOM con los datos más recientes
         } catch (error) {
             console.error('Error loading products:', error);
         }
     }
+    
     static styles = css`
     :host{
         padding:1em;
@@ -84,9 +95,21 @@ export class productos extends LitElement {
         color: var(--color-fondo);
     }
     `;
+    connectedCallback() {
+        super.connectedCallback();
+        const navegacion = document.querySelectorAll('.Menuli');
+        navegacion.forEach(item => {
+          item.addEventListener("click", (e) => {
+            const selectedId = e.currentTarget.id;
+            this.currentFilter = "productos" + selectedId;
+            this.requestUpdate();
+          });
+        });
+      }      
     render() {
-        return html`
-            ${this.productosPantalon.map(producto => html`
+        const productos= this[this.currentFilter]// Coloca currentFilter dentro de un array para que funcione con el método map       
+        return html` 
+            ${productos.map(producto => html`
             <div class="producto">
                 <img src="${producto.imagen}" alt="${producto.nombre}">
                 <div>
@@ -99,8 +122,7 @@ export class productos extends LitElement {
             `)}
         
         `
-      }
-
+    }
 }
 
 export class Barra extends LitElement {

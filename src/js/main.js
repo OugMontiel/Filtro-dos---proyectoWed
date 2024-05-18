@@ -12,14 +12,22 @@ import {
 
 customElements.define("barra-dos", Barra);
 customElements.define("productos-disponibles", productos);
-getCarrito().then(data => {
-    console.log('getCarrito result:', data);
-}).catch(error => {
-    console.error('Error fetching data:', error);
-});
+// getCarrito().then(data => {
+//     console.log('getCarrito result:', data);
+// }).catch(error => {
+//     console.error('Error fetching data:', error);
+// });
 
 function Desplegable() {
     var btn = document.getElementById("Menu");
     btn.classList.toggle("visible");
 } 
+
+let navegacion = document.querySelectorAll('.Menuli')
+navegacion.forEach(item => {
+    item.addEventListener("click", (e) => {
+        navegacion.forEach(boton => boton.classList.remove("Selecion"));
+        e.currentTarget.classList.add("Selecion");
+    });
+});
 
