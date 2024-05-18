@@ -66,28 +66,21 @@ main {
 /* mostrador  */
 
 .content {
-    border: 1px solid var(--color-Boton);
+    margin: 1em 1em 1em 0 ;
     padding: 2em;
-    border-radius: 3em;
-    background: var(--color-fondo);
+    border-radius: 2em;
+    background: var(--color-w);
     /* height: 90vh; */
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .content h1 {
     padding: 0 0 1em 0;
-    font-size: 2rem;
-}
-
-
-button {
-    height: 2em;
-    width: 7em;
-
-    border-radius: .5em;
-    background: var(--color-Boton);
     color: var(--color-Boton-letras);
+    /* font-size: 2rem; */
 }
+
+/* Barra dos para el responsive  */
 
 .BarraDos {
     display: none;
