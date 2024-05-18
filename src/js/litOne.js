@@ -126,15 +126,26 @@ export class productos extends LitElement {
 
 export class Barra extends LitElement {
     static properties = {
+        productosAbrigo: { type: Array },
+        productosCamiseta: { type: Array },
+        productosPantalon: { type: Array },
         productosCarrito: { type: Array },
+        dato: { type: Array },
     }
     constructor() {
         super()
-        this.productosCarrito=[]
+        this.productosAbrigo = [];
+        this.productosCamiseta = [];
+        this.productosPantalon = [];
+        this.productosCarrito = []
+        this.dato = []
         this.loadProducts()
     }
     async loadProducts() {
         try {
+            this.productosAbrigo = await getAbrigo();
+            this.productosCamiseta = await getCamiseta();
+            this.productosPantalon = await getPantalon();
             this.productosCarrito = await getCarrito();
             this.requestUpdate();
         } catch (error) {
@@ -142,38 +153,84 @@ export class Barra extends LitElement {
         }
     }
     static styles = css`
-                `;
+        .producto {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-    render() {
-        return html`
-        ${this.productosCarrito.map(producto=> html`
+            background: var(--color-producto);
+            border-radius: 1em;
+
+            margin:1em;
+            padding: 0 1em;
+            height:4.5em;
+        }
+        .producto img {
+            max-width:100%;
+            max-height:100%;
+            border-radius:1em;
+        }
+        .producto div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .producto p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color:var(--color-letras);
+
+            margin:.2em;
+        }
         
-        <div class="producto Abrigo">
-            <img src="../Storage/img/360_F_460013622_6xF8uN6ubMvLx0tAJECBHfKPoNOR5cRa.jpg" alt="">
+    `;
+    contenidoHTML(base, producto) {
+        return html`
+        <div class="producto ">
+        <img src="${base.imagen}" alt="${base.nombre}">
             <div>
                 <p>Titulo</p>
-                <p>Abrigo 01</p>
+                <p>${base.nombre}</p>
             </div>
             <div>
                 <p>Cantidad</p>
-                <span>${producto.cantidad}</span>
+                <p>${producto.cantidad}</p>
             </div>
             <div>
                 <p>Precio</p>
-                <p>$ 1000</p>
+                <p>$ ${base.precio}</p>
             </div>
             <div>
                 <p>SubTotal</p>
-                <p>$ 2000</p>
+                <p>$  ${producto.cantidad * base.precio}</p>
             </div>
-                <a href="carritoOnu.html">
-                <box-icon type='solid' name='x-circle'></box-icon>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #58720b;transform: ;msFilter:;"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
             </a>
-        </div>       
-        `)}
-        
-        `
-    };
+            </div>    
+        `;
+    }
+    render() {
+        return html`
+        ${this.productosCarrito.map(producto => {
+            if (Object.keys(producto)[0] === "abrigoId") {
+                this.dato = this.productosAbrigo.filter(item => parseFloat(item.id) === producto.abrigoId);
+                console.log("dato", ...this.dato);
+                return this.contenidoHTML(...this.dato, producto);
+            }
+            if (Object.keys(producto)[0] === "pantalonId") {
+                this.dato = this.productosPantalon;
+                this.dato = this.productosAbrigo.filter(item => parseFloat(item.id) === producto.pantalonId);
+                return this.contenidoHTML(...this.dato, producto);
+            }
+            if (Object.keys(producto)[0] === "camisetaId") {
+                this.dato = this.productosCamiseta;
+                this.dato = this.productosAbrigo.filter(item => parseFloat(item.id) === producto.camisetaId);
+                return this.contenidoHTML(...this.dato, producto);
+            }
+        })}
+        `;
+    }
 }
-
-
