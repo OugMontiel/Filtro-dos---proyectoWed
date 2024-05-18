@@ -10,7 +10,7 @@ import {
 } from "./litOne.js";
 
 
-customElements.define("barra-dos", Barra);
+customElements.define("productos-carrito", Barra);
 customElements.define("productos-disponibles", productos);
 // getCarrito().then(data => {
 //     console.log('getCarrito result:', data);

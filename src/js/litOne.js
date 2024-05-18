@@ -33,13 +33,12 @@ export class productos extends LitElement {
                 ...this.productosCamiseta,
                 ...this.productosPantalon
             ];
-            this.currentFilter= "productos" + document.querySelector(".Selecion").id; // Añade "producto " antes del id
+            this.currentFilter = "productos" + document.querySelector(".Selecion").id; // Añade "producto " antes del id
             this.requestUpdate(); //es una función integrada de la clase LitElement. Cuando se llama a requestUpdate(), se programa una actualización del componente, lo que implica que render() se ejecutará de nuevo para actualizar el DOM con los datos más recientes
         } catch (error) {
             console.error('Error loading products:', error);
         }
     }
-    
     static styles = css`
     :host{
         padding:1em;
@@ -99,15 +98,15 @@ export class productos extends LitElement {
         super.connectedCallback();
         const navegacion = document.querySelectorAll('.Menuli');
         navegacion.forEach(item => {
-          item.addEventListener("click", (e) => {
-            const selectedId = e.currentTarget.id;
-            this.currentFilter = "productos" + selectedId;
-            this.requestUpdate();
-          });
+            item.addEventListener("click", (e) => {
+                const selectedId = e.currentTarget.id;
+                this.currentFilter = "productos" + selectedId;
+                this.requestUpdate();
+            });
         });
-      }      
+    }
     render() {
-        const productos= this[this.currentFilter]// Coloca currentFilter dentro de un array para que funcione con el método map       
+        const productos = this[this.currentFilter]// Coloca currentFilter dentro de un array para que funcione con el método map       
         return html` 
             ${productos.map(producto => html`
             <div class="producto">
@@ -126,18 +125,53 @@ export class productos extends LitElement {
 }
 
 export class Barra extends LitElement {
+    static properties = {
+        productosCarrito: { type: Array },
+    }
     constructor() {
         super()
+        this.productosCarrito=[]
+        this.loadProducts()
+    }
+    async loadProducts() {
+        try {
+            this.productosCarrito = await getCarrito();
+            this.requestUpdate();
+        } catch (error) {
+            console.error("Error loading products:", error);
+        }
     }
     static styles = css`
                 `;
 
     render() {
         return html`
-            < ul >
-            <li><a href="src/views/carrito.html">Carrito</a></li>
-        </ul >
-            <p>2023 Camper</p>
+        ${this.productosCarrito.map(producto=> html`
+        
+        <div class="producto Abrigo">
+            <img src="../Storage/img/360_F_460013622_6xF8uN6ubMvLx0tAJECBHfKPoNOR5cRa.jpg" alt="">
+            <div>
+                <p>Titulo</p>
+                <p>Abrigo 01</p>
+            </div>
+            <div>
+                <p>Cantidad</p>
+                <span>${producto.cantidad}</span>
+            </div>
+            <div>
+                <p>Precio</p>
+                <p>$ 1000</p>
+            </div>
+            <div>
+                <p>SubTotal</p>
+                <p>$ 2000</p>
+            </div>
+                <a href="carritoOnu.html">
+                <box-icon type='solid' name='x-circle'></box-icon>
+            </a>
+        </div>       
+        `)}
+        
         `
     };
 }
