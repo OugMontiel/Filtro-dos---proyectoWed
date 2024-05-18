@@ -31,71 +31,68 @@ export class productos extends LitElement {
     }
     static styles = css`
     :host{
+        padding:1em;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-gap: 1.5em;
     }
     .producto {
-        /* max-height: 50%; */
-        /* max-width: 50%; */
-    
+        margin:.5em;
+
         display: flex;
         flex-direction: column;
         justify-content: center;
     
-        /* overflow: hidden; */
-    
-        border: 1px solid var(--color-producto);
-        background: var(--color-producto);
-        border-radius: 1em;
+        overflow: hidden;
     }
     
     .producto img {
-        padding: .5em;
-        max-height: 70%;
-        max-width: 100%;
+        max-width:100%;
+        max-height:13em;
+        border-radius:1em;
     }
     
-    .producto div {
-        flex-grow: 1;
-    
+    .producto div {    
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+
+        margin-top:-2em;
     
-        border: 2px solid var(--color-Boton);
         border-radius: 1em;
         padding: 0.5em;
     
-        background: var(--color-fondo);
-        color: var(--color-Boton);
+        background: var(--color-producto);
+        color: var(--color-w);
     }
+    small{
+        display: -webkit-box; /* Establece un contenedor flex de tipo caja */
+            -webkit-box-orient: vertical; /* Establece la orientación vertical */
+            -webkit-line-clamp: 2; /* Limita el texto a dos líneas */
     
-    .producto div span {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        overflow: hidden; /* Oculta cualquier texto que desborde el contenedor */
+        text-overflow: ellipsis; /* Agrega puntos suspensivos al final del texto que se trunca */
+    }
+    p{
+        margin:0;
+        padding:0;
+
+        color: var(--color-Boton-letras);
     }
     button {
-        height: 2em;
-        width: 7em;
-    
-        border-radius: .5em;
-        background: var(--color-Boton);
-        color: var(--color-Boton-letras);
+        padding:.5em;
+        border-radius: 2em;
+        background: var(--color-w);
+        color: var(--color-fondo);
     }
     `;
     render() {
         return html`
             ${this.productosPantalon.map(producto => html`
-                <div class="producto Abrigo">
+            <div class="producto">
                 <img src="${producto.imagen}" alt="${producto.nombre}">
                 <div>
-                  <p>${producto.nombre}</p>
-                  <span>
-                    <p>$${producto.precio}</p>
+                    <small>${producto.nombre}</small>
+                    <p>$ ${producto.precio}</p>
                     <button>Agregar</button>
-                  </span>
                 </div>
               </div>
             
