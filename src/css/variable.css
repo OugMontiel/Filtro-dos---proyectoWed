@@ -1,8 +1,9 @@
 :root {
-    --color-fondo: #ffffff;
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+    --color-w: #d1d5d6; 
+    --color-fondo: #97a13e;
     --color-producto: #b1b174;
     --color-Boton: #f3b40f;
     --color-Boton-letras: #58720b;
-    --color-fondo2: #97a13e;
-    --color-letras: #d1d5d6;
+    --color-letras: #fff;
 }

@@ -30,6 +30,11 @@ export class productos extends LitElement {
         }
     }
     static styles = css`
+    :host{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 1.5em;
+    }
     .producto {
         /* max-height: 50%; */
         /* max-width: 50%; */
