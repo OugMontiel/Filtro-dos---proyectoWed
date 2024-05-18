@@ -174,6 +174,16 @@ export class Barra extends LitElement {
             display: flex;
             flex-direction: column;
             justify-content: center;
+
+        }
+        .producto small{
+            color:var(--color-Boton-letras);
+            font-size:.9em;
+        }
+        marquee{
+            max-width:8em;
+            color:var(--color-letras);
+            font-size:.9em;
         }
         .producto p {
             display: flex;
@@ -181,6 +191,7 @@ export class Barra extends LitElement {
             align-items: center;
 
             color:var(--color-letras);
+            font-size:.9em;
 
             margin:.2em;
         }
@@ -191,20 +202,22 @@ export class Barra extends LitElement {
         <div class="producto ">
         <img src="${base.imagen}" alt="${base.nombre}">
             <div>
-                <p>Titulo</p>
-                <p>${base.nombre}</p>
+                <small>Titulo</small>
+                <marquee behavior="scroll" direction="left" style="white-space: nowrap; overflow: hidden;">
+                ${base.nombre}
+                </marquee>
             </div>
             <div>
-                <p>Cantidad</p>
+                <small>Cantidad</small>
                 <p>${producto.cantidad}</p>
             </div>
             <div>
-                <p>Precio</p>
-                <p>$ ${base.precio}</p>
+                <small>Precio</small>
+                <p>$ ${base.precio.toLocaleString()}</p>
             </div>
             <div>
-                <p>SubTotal</p>
-                <p>$  ${producto.cantidad * base.precio}</p>
+                <small>SubTotal</small>
+                <p>$ ${(producto.cantidad* base.precio).toLocaleString()}</p>
             </div>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #58720b;transform: ;msFilter:;"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
