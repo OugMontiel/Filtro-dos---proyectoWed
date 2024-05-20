@@ -104,6 +104,13 @@ export class productos extends LitElement {
                 this.requestUpdate();
             });
         });
+        let colorNavegacion = document.querySelectorAll('.Menuli')
+        colorNavegacion.forEach(item => {
+            item.addEventListener("click", (e) => {
+                colorNavegacion.forEach(boton => boton.classList.remove("Selecion"));
+                e.currentTarget.classList.add("Selecion");
+            });
+        });
     }
     render() {
         const productos = this[this.currentFilter]// Coloca currentFilter dentro de un array para que funcione con el método map       
@@ -114,13 +121,37 @@ export class productos extends LitElement {
                 <div>
                     <small>${producto.nombre}</small>
                     <p>$ ${producto.precio.toLocaleString()}</p>
-                    <button class="agregar">Agregar</button>
+                    <button class="agregar">AGREGAR</button>
                 </div>
               </div>
             
             `)}
         
         `
+    }
+    updated(changedProperties) {
+        super.updated(changedProperties);
+
+        if (changedProperties.has('currentFilter')) {
+            this.handleProductosAllUpdated();
+        }
+    }
+    add() {
+        return html`
+    <article>
+        <p>El articulo a sido agregado al carrito</p>
+    </article>
+    `}
+    handleProductosAllUpdated() {
+        let botonAgregar = this.shadowRoot.querySelectorAll('.agregar');
+        console.log("boton", botonAgregar);
+        botonAgregar.forEach(item => {
+            item.addEventListener("click", (e) => {
+                console.log(item);
+                
+                this.requestUpdate()
+            })
+        })
     }
 }
 

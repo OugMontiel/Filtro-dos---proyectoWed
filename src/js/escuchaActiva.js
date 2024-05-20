@@ -5,6 +5,10 @@ import {
     getPantalon,
     getCarrito
 } from "./bd.js";
+import { 
+    Barra, 
+    productos 
+} from "./litOne.js";
 
 export class crud extends LitElement{
     static properties = {
@@ -19,8 +23,9 @@ export class crud extends LitElement{
         this.productosAbrigo = [];
         this.productosCamiseta = [];
         this.productosPantalon = [];
-        this.productosCarrito = []
-        this.loadProducts()
+        this.productosCarrito = [];
+        this.content=``;
+        this.loadProducts();
     }
     async loadProducts() {
         try {
@@ -75,36 +80,52 @@ export class crud extends LitElement{
     render() {
         return html`${this.content}`;
     }
-    connectedCallback() {
-        super.connectedCallback();
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const botonAgregar = document.querySelectorAll('.agregar');
-            const iconoEliminar = document.querySelectorAll('.eliminar');
-            // const eliminarTodo = document.querySelector('#eliminarTodo');
-            // const comprarTodo = document.querySelector('#comprarTodo');
-            console.log(iconoEliminar);
+    observeDomChanges() {
+        const config = { childList: true, subtree: true };
+        const callback = (mutationsList) => {
+            for (const mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    this.firstUpdated();
+                }
+            }
+        };
 
-            botonAgregar.forEach(item=>{
-                item.addEventListener("click", (e) =>{
-                    this.content = this.add()
-                    this.requestUpdate()
-                })
+        const observer = new MutationObserver(callback);
+        observer.observe(this.shadowRoot, config);
+
+        this.firstUpdated(); // Inicialmente agregar los event listeners
+    }
+    firstUpdated(){
+        const botonAgregar = this.shadowRoot.querySelectorAll('.agregar');
+        const iconoEliminar = this.shadowRoot.querySelectorAll('.eliminar');
+        // const eliminarTodo = document.querySelector('#eliminarTodo');
+        // const comprarTodo = document.querySelector('#comprarTodo');
+        
+        
+        console.log("boton",botonAgregar);
+        console.log("Icono",iconoEliminar);
+
+        botonAgregar.forEach(item=>{
+            item.addEventListener("click", (e) =>{
+                this.content = this.add()
+                this.requestUpdate()
             })
-            iconoEliminar.forEach(item=>{
-                item.addEventListener("click", (e) =>{
-                    this.content = this.drop()
-                    this.requestUpdate()
-                })
-            })    
-            // eliminarTodo.addEventListener('click', (e)=>{
-            //     this.content = this.dropAll()
-            //     this.requestUpdate()
-            // });
-            // comprarTodo.addEventListener('click', (e)=>{
-            //     this.content = this.dropAll()
-            //     this.requestUpdate()
-            // });
         })
+        iconoEliminar.forEach(item=>{
+            item.addEventListener("click", (e) =>{
+                this.content = this.drop()
+                this.requestUpdate()
+            })
+        })    
+        // eliminarTodo.addEventListener('click', (e)=>{
+        //     this.content = this.dropAll()
+        //     this.requestUpdate()
+        // });
+        // comprarTodo.addEventListener('click', (e)=>{
+        //     this.content = this.dropAll()
+        //     this.requestUpdate()
+        // });
+        
       }
 }
 
