@@ -57,7 +57,7 @@ export class productos extends LitElement {
     
     .producto img {
         max-width:100%;
-        max-height:13em;
+        height:15em;
         border-radius:1em;
     }
     
@@ -113,8 +113,8 @@ export class productos extends LitElement {
                 <img src="${producto.imagen}" alt="${producto.nombre}">
                 <div>
                     <small>${producto.nombre}</small>
-                    <p>$ ${producto.precio}</p>
-                    <button>Agregar</button>
+                    <p>$ ${producto.precio.toLocaleString()}</p>
+                    <button class="agregar">Agregar</button>
                 </div>
               </div>
             
@@ -219,7 +219,7 @@ export class Barra extends LitElement {
                 <small>SubTotal</small>
                 <p>$ ${(producto.cantidad * base.precio).toLocaleString()}</p>
             </div>
-            <a href="#">
+            <a class"eliminar" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #58720b;transform: ;msFilter:;"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
             </a>
             </div>    
@@ -230,7 +230,6 @@ export class Barra extends LitElement {
         ${this.productosCarrito.map(producto => {
             if (Object.keys(producto)[0] === "abrigoId") {
                 this.dato = this.productosAbrigo.filter(item => parseFloat(item.id) === producto.abrigoId);
-                console.log("dato", ...this.dato);
                 return this.contenidoHTML(...this.dato, producto);
             }
             if (Object.keys(producto)[0] === "pantalonId") {

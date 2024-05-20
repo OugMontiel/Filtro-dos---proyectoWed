@@ -4,6 +4,7 @@ import {
     getPantalon,
     getCarrito
 } from "./bd.js";
+import { crud } from "./escuchaActiva.js";
 import { 
     Barra, 
     productos 
@@ -12,6 +13,7 @@ import {
 
 customElements.define("productos-carrito", Barra);
 customElements.define("productos-disponibles", productos);
+customElements.define("escucha-activa",crud)
 // getCarrito().then(data => {
 //     console.log('getCarrito result:', data);
 // }).catch(error => {
