@@ -15,11 +15,7 @@ import { crud } from "./escuchaActiva.js";
 customElements.define("productos-carrito", Barra);
 customElements.define("productos-disponibles", productos);
 customElements.define("escucha-activa",crud)
-// getCarrito().then(data => {
-//     console.log('getCarrito result:', data);
-// }).catch(error => {
-//     console.error('Error fetching data:', error);
-// });
+
 
 function Desplegable() {
     var btn = document.getElementById("Menu");
