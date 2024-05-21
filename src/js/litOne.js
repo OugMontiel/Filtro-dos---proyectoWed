@@ -116,7 +116,7 @@ export class productos extends LitElement {
         const productos = this[this.currentFilter]// Coloca currentFilter dentro de un array para que funcione con el método map       
         return html` 
             ${productos.map(producto => html`
-            <div class="producto">
+            <div class="producto" data-id="${producto.id}">
                 <img src="${producto.imagen}" alt="${producto.nombre}">
                 <div>
                     <small>${producto.nombre}</small>
@@ -136,18 +136,35 @@ export class productos extends LitElement {
             this.handleProductosAllUpdated();
         }
     }
-    add() {
-        return html`
-    <article>
-        <p>El articulo a sido agregado al carrito</p>
-    </article>
-    `}
+    async addCarrito(item){
+        try {
+            // Realiza la petición POST para agregar el elemento al carrito
+            let res = await fetch("http://localhost:5101/carrito", {
+                method: 'POST',
+                body: JSON.stringify(item),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            let data = await res.json();
+            return data;
+        } catch (error) {
+            console.error(error);
+            throw new Error("Error al agregar el elemento al carrito");
+        }
+    }
     handleProductosAllUpdated() {
         let botonAgregar = this.shadowRoot.querySelectorAll('.agregar');
         console.log("boton", botonAgregar);
         botonAgregar.forEach(item => {
             item.addEventListener("click", (e) => {
                 console.log(item);
+
+                let productoElement=item.closest(".producto")
+
+                let id = productoElement.dataset.id;
+
+                console.log("ID del producto:", id);
                 
                 this.requestUpdate()
             })

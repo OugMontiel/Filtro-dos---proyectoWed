@@ -102,8 +102,8 @@ export class crud extends LitElement{
         // const comprarTodo = document.querySelector('#comprarTodo');
         
         
-        console.log("boton",botonAgregar);
-        console.log("Icono",iconoEliminar);
+        // console.log("boton",botonAgregar);
+        // console.log("Icono",iconoEliminar);
 
         botonAgregar.forEach(item=>{
             item.addEventListener("click", (e) =>{

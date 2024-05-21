@@ -9,7 +9,7 @@ import {
     productos 
 } from "./litOne.js";
 import { crud } from "./escuchaActiva.js";
-
+// import * as nombreModulo from "./prueva.js";
 
 
 customElements.define("productos-carrito", Barra);
