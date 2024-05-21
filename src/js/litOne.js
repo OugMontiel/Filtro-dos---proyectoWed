@@ -121,7 +121,7 @@ export class productos extends LitElement {
                 <div>
                     <small>${producto.nombre}</small>
                     <p>$ ${producto.precio.toLocaleString()}</p>
-                    <button class="agregar">AGREGAR</button>
+                    <button @click="${this.handleProductosAllUpdated}" class="agregar">AGREGAR</button>
                 </div>
               </div>
             
@@ -136,39 +136,11 @@ export class productos extends LitElement {
             this.handleProductosAllUpdated();
         }
     }
-    async addCarrito(item){
-        try {
-            // Realiza la petición POST para agregar el elemento al carrito
-            let res = await fetch("http://localhost:5101/carrito", {
-                method: 'POST',
-                body: JSON.stringify(item),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            let data = await res.json();
-            return data;
-        } catch (error) {
-            console.error(error);
-            throw new Error("Error al agregar el elemento al carrito");
-        }
+    async addCarrito(){
+        
     }
-    handleProductosAllUpdated() {
-        let botonAgregar = this.shadowRoot.querySelectorAll('.agregar');
-        console.log("boton", botonAgregar);
-        botonAgregar.forEach(item => {
-            item.addEventListener("click", (e) => {
-                console.log(item);
-
-                let productoElement=item.closest(".producto")
-
-                let id = productoElement.dataset.id;
-
-                console.log("ID del producto:", id);
-                
-                this.requestUpdate()
-            })
-        })
+    handleProductosAllUpdated(e) {
+       console.log(e.target.parentElement.parentElement.dataset.id);
     }
 }
 

@@ -30,7 +30,6 @@ export const getPantalon = async () => {
         let res = await fetch("http://localhost:5101/pantalon")
         let data = await res.json();
         let newData = actualizarIDs(data,"pantalon");
-        console.log(newData);
         return newData;
     } catch (error) {
         console.error(error)
@@ -40,7 +39,6 @@ export const getCarrito = async () => {
     try {
         let res = await fetch("http://localhost:5101/carrito")
         let data = await res.json();
-        console.log(data);
         return data;
     } catch (error) {
         console.error(error)
