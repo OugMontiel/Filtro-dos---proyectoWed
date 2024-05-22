@@ -25,7 +25,7 @@ export class productos extends LitElement {
         this.productosAbrigo = [];
         this.productosCamiseta = [];
         this.productosPantalon = [];
-        this.productosCarrito = []
+        this.productosCarrito = [];
         this.currentFilter = "productosAll"; // Inicializa currentFilter como una cadena vacía en lugar de un array
         this.loadProducts(); //Esta es una funcion asincrona
     }
@@ -402,4 +402,41 @@ export class Barra extends LitElement {
         </div>
         `;
     }
+}
+
+export class buton extends LitElement {
+    static properties = {
+        contador: { type: String },
+        productosCarrito: { type: Array },
+    }
+    constructor() {
+        super();
+        this.productosCarrito = [];
+        this.contador = "0";
+        this.incializacion()
+    }
+    async incializacion() {
+        try {
+            this.productosCarrito = await getCarrito()
+            this.contador = Object.keys(this.productosCarrito).length;
+            this.requestUpdate(); //es una función integrada de la clase LitElement. Cuando se llama a requestUpdate(), se programa una actualización del componente, lo que implica que render() se ejecutará de nuevo para actualizar el DOM con los datos más recientes
+        } catch (error) {
+            console.error('Error loading products:', error);
+        }
+    }
+    static styles = css`
+    button {
+        padding:.5em;
+        border-radius: 2em;
+        background: var(--color-w);
+        color: var(--color-fondo);
+    }
+    `;
+    render() {
+        return html`
+        <button>${this.contador} </button>
+        `
+    }
+
+
 }
