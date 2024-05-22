@@ -150,8 +150,9 @@ export class productos extends LitElement {
             for (const clave in element) {
                 if (clave === key) {
                     if (element[clave] === valor) {
-                        valor = Element.cantidad + 1
-                        // Elimine este Elemento 
+                        valor = element.cantidad + 1
+                        console.log(element.id);
+                        eliminarDelCarrito(element.id)
                         return valor
                     }
                 }
@@ -159,21 +160,19 @@ export class productos extends LitElement {
         }
         return 1
     }
-
-
     handleProductosAllUpdated(e) {
         let id = e.target.parentElement.parentElement.dataset.id;
         let json = {};
         let partes = id.split("-");
         let primeraParte = partes[0]; // "abrigo"
-        let segundaParte = partes[1];
-        json[`${primeraParte}Id`] = parseInt(segundaParte);
-        let cantidadDatos = Object.keys(this.productosCarrito).length;
-        json["id"] = parseInt(cantidadDatos);
+        let segundaParte = partes[1].toString();
+        json[`${primeraParte}Id`] = segundaParte;
         let primeraKey = Object.keys(json)[0];
-        let cantidad = this.verificarExistencia(primeraKey, parseInt(segundaParte))
-        console.log(cantidad);
+        let cantidad = this.verificarExistencia(primeraKey, segundaParte)
+        let cantidadDatos = Object.keys(this.productosCarrito).length;
+        json["id"] = cantidadDatos.toString();
         json["cantidad"] = parseInt(cantidad);
+        agregarAlCarrito(json)
         this.loadProducts()
     }
 }
