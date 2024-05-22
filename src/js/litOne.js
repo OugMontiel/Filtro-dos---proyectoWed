@@ -286,31 +286,32 @@ export class Barra extends LitElement {
     render() {
         return html`
         ${this.productosCarrito.map(producto => {
-            if (Object.keys(producto)[0] === "abrigoId") {
+            if (Object.keys(producto)[1] === "abrigoId") {
                 this.dato = this.productosAbrigo.filter(item => {
-                    let id = item.id.toString(); // Convertir el id en una cadena
+                    let id = item.id; // Convertir el id en una cadena
                     let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
-                    let ultimaParte = partes[partes.length - 1]; // Obtener la última parte de la cadena
-                    return parseFloat(ultimaParte) === producto.abrigoId
+                    let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
+                    return ultimaParte === producto.abrigoId
                 });
+                console.log(this.dato);
                 return this.contenidoHTML(...this.dato, producto, producto.id);
             }
-            if (Object.keys(producto)[0] === "pantalonId") {
+            if (Object.keys(producto)[1] === "pantalonId") {
                 this.dato = this.productosPantalon;
                 this.dato = this.productosAbrigo.filter(item => {
-                    let id = item.id.toString(); // Convertir el id en una cadena
+                    let id = item.id; // Convertir el id en una cadena
                     let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
-                    let ultimaParte = partes[partes.length - 1]; // Obtener la última parte de la cadena
+                    let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
                     return parseFloat(ultimaParte) === producto.pantalonId
                 });
                 return this.contenidoHTML(...this.dato, producto, producto.id);
             }
-            if (Object.keys(producto)[0] === "camisetaId") {
+            if (Object.keys(producto)[1] === "camisetaId") {
                 this.dato = this.productosCamiseta;
                 this.dato = this.productosAbrigo.filter(item => {
-                    let id = item.id.toString(); // Convertir el id en una cadena
+                    let id = item.id; // Convertir el id en una cadena
                     let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
-                    let ultimaParte = partes[partes.length - 1]; // Obtener la última parte de la cadena
+                    let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
                     return parseFloat(ultimaParte) === producto.camisetaId
                 });
                 return this.contenidoHTML(...this.dato, producto, producto.id);
