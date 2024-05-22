@@ -5,10 +5,10 @@ import {
     getPantalon,
     getCarrito
 } from "./bd.js";
-import { 
+import {
     agregarAlCarrito,
     eliminarDelCarrito
- } from './prueva.js';
+} from './prueva.js';
 
 export class productos extends LitElement {
     static properties = { //Se cargan las variables
@@ -248,7 +248,16 @@ export class Barra extends LitElement {
 
             margin:.2em;
         }
-        
+        button {
+            padding:.5em;
+            border-radius: 2em;
+            background: var(--color-w);
+            color: var(--color-fondo);
+        }
+        .piede{
+            display:flex;
+            flex-direction: row;
+        }
     `;
     contenidoHTML(base, producto, eliminador) {
         return html`
@@ -278,10 +287,59 @@ export class Barra extends LitElement {
             </div>    
         `;
     }
-    handleProductosAllUpdated(e){
-        let id=e.currentTarget.dataset.id;
+    handleProductosAllUpdated(e) {
+        let id = e.currentTarget.dataset.id;
         eliminarDelCarrito(id)
         this.requestUpdate();
+    }
+    elimeTodo(e) {
+        let ids = Object.keys(this.productosCarrito); // Obtener un arreglo de los IDs
+        ids.forEach((id) => {
+            eliminarDelCarrito(id); // Llamar a la función eliminarDelCarrito() para cada ID
+        });
+        this.requestUpdate();
+    }
+    optenerTotal() {
+        let total = 0;
+
+        this.productosCarrito.forEach(producto => {
+            let precio;
+            if (Object.keys(producto)[1] === "abrigoId") {
+                // Obtener el precio del abrigo según su ID
+                precio = this.productosAbrigo.find(item => {
+                    let id = item.id; // Convertir el id en una cadena
+                    let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
+                    let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
+                    return ultimaParte === producto.abrigoId
+                }).precio;
+
+            } else if (Object.keys(producto)[1] === "pantalonId") {
+                // Obtener el precio del pantalón según su ID
+                precio = this.productosPantalon.find(item => {
+                    let id = item.id; // Convertir el id en una cadena
+                    let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
+                    let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
+                    return ultimaParte === producto.abrigoId
+                }).precio;
+
+            } else if (Object.keys(producto)[1] === "camisetaId") {
+                // Obtener el precio de la camiseta según su ID
+                precio = this.productosCamiseta.find(item => {
+                    let id = item.id; // Convertir el id en una cadena
+                    let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
+                    let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
+                    return ultimaParte === producto.abrigoId
+                }).precio;
+            }
+
+            // Calculate the subtotal for each product
+            let subtotal = producto.cantidad * precio;
+            
+            // Add the subtotal to the total
+            total += subtotal;
+        });
+
+        return total;
     }
     render() {
         return html`
@@ -317,6 +375,16 @@ export class Barra extends LitElement {
                 return this.contenidoHTML(...this.dato, producto, producto.id);
             }
         })}
+        <div class="producto">
+            <button @click="${this.elimeTodo}">Vaciar Carrito</button>
+            <div>
+                <spam class="piede">
+                    <p>Total</p>
+                    <p>$ ${this.optenerTotal().toLocaleString()}</p>
+                </spam>
+                <button  @click="${this.elimeTodo}">Comparar Ahora</button>
+            </div>
+        </div>
         `;
     }
 }
