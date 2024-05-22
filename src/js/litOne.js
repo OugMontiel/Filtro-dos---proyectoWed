@@ -174,6 +174,7 @@ export class productos extends LitElement {
         json["cantidad"] = parseInt(cantidad);
         agregarAlCarrito(json)
         this.loadProducts()
+        location.href="/"
     }
 }
 
@@ -290,6 +291,7 @@ export class Barra extends LitElement {
     handleProductosAllUpdated(e) {
         let id = e.currentTarget.dataset.id;
         eliminarDelCarrito(id)
+        location.href = "/src/views/carrito.html"
         this.requestUpdate();
     }
     elimeTodo(e) {
