@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "json": "json-server src/js/bd/bd.json -p 5101",
+    "json": "json-server -h 172.16.101.146 src/js/bd/bd.json -p 5499",
     "server": "npm run json & npm run dev",
     "build": "vite build",
     "preview": "vite preview"

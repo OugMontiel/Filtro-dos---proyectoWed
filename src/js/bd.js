@@ -7,7 +7,7 @@ const actualizarIDs = (baseDeDatos,valor) => {
 };
 export const getAbrigo = async () => {
     try {
-        let res = await fetch("http://localhost:5101/abrigo")
+        let res = await fetch("http://172.16.101.146:5499/abrigo")
         let data = await res.json();
         let newData = actualizarIDs(data,"abrigo");
         return newData;
@@ -17,7 +17,7 @@ export const getAbrigo = async () => {
 }
 export const getCamiseta = async () => {
     try {
-        let res = await fetch("http://localhost:5101/camiseta")
+        let res = await fetch("http://172.16.101.146:5499/camiseta")
         let data = await res.json();
         let newData = actualizarIDs(data,"camiseta");
         return newData;
@@ -27,7 +27,7 @@ export const getCamiseta = async () => {
 }
 export const getPantalon = async () => {
     try {
-        let res = await fetch("http://localhost:5101/pantalon")
+        let res = await fetch("http://172.16.101.146:5499/pantalon")
         let data = await res.json();
         let newData = actualizarIDs(data,"pantalon");
         return newData;
@@ -37,7 +37,7 @@ export const getPantalon = async () => {
 }
 export const getCarrito = async () => {
     try {
-        let res = await fetch("http://localhost:5101/carrito")
+        let res = await fetch("http://172.16.101.146:5499/carrito")
         let data = await res.json();
         return data;
     } catch (error) {
