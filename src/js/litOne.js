@@ -5,6 +5,7 @@ import {
     getPantalon,
     getCarrito
 } from "./bd.js";
+import { agregarAlCarrito } from './prueva.js';
 
 export class productos extends LitElement {
     static properties = { //Se cargan las variables
@@ -12,6 +13,7 @@ export class productos extends LitElement {
         productosAbrigo: { type: Array },
         productosCamiseta: { type: Array },
         productosPantalon: { type: Array },
+        productosCarrito: { type: Array },
         currentFilter: { type: String },
     }
     constructor() { //Se inicializan las variables
@@ -20,6 +22,7 @@ export class productos extends LitElement {
         this.productosAbrigo = [];
         this.productosCamiseta = [];
         this.productosPantalon = [];
+        this.productosCarrito=[]
         this.currentFilter = "productosAll"; // Inicializa currentFilter como una cadena vacía en lugar de un array
         this.loadProducts(); //Esta es una funcion asincrona
     }
@@ -28,6 +31,7 @@ export class productos extends LitElement {
             this.productosAbrigo = await getAbrigo();
             this.productosCamiseta = await getCamiseta();
             this.productosPantalon = await getPantalon();
+            this.productosCarrito=await getCarrito()
             this.productosAll = [
                 ...this.productosAbrigo,
                 ...this.productosCamiseta,
@@ -136,11 +140,21 @@ export class productos extends LitElement {
             this.handleProductosAllUpdated();
         }
     }
-    async addCarrito(){
-        
+    async addCarrito() {
+
     }
     handleProductosAllUpdated(e) {
-       console.log(e.target.parentElement.parentElement.dataset.id);
+        let id = e.target.parentElement.parentElement.dataset.id;
+        let partes = id.split("-");
+        let primeraParte = partes[0]; // "abrigo"
+        let segundaParte = partes[1];
+        let cantidadDatos = Object.keys(this.productosCarrito).length;
+        let json = {};
+        json[`${primeraParte}Id`] = parseInt(segundaParte);
+        json["cantidad"] = 1;
+        json["id"] = parseInt(cantidadDatos);
+        agregarAlCarrito(json)
+        console.log(json);
     }
 }
 
