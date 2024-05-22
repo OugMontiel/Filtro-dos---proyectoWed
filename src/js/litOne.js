@@ -5,7 +5,10 @@ import {
     getPantalon,
     getCarrito
 } from "./bd.js";
-import { agregarAlCarrito } from './prueva.js';
+import { 
+    agregarAlCarrito,
+    eliminarDelCarrito
+ } from './prueva.js';
 
 export class productos extends LitElement {
     static properties = { //Se cargan las variables
@@ -22,7 +25,7 @@ export class productos extends LitElement {
         this.productosAbrigo = [];
         this.productosCamiseta = [];
         this.productosPantalon = [];
-        this.productosCarrito=[]
+        this.productosCarrito = []
         this.currentFilter = "productosAll"; // Inicializa currentFilter como una cadena vacía en lugar de un array
         this.loadProducts(); //Esta es una funcion asincrona
     }
@@ -31,7 +34,7 @@ export class productos extends LitElement {
             this.productosAbrigo = await getAbrigo();
             this.productosCamiseta = await getCamiseta();
             this.productosPantalon = await getPantalon();
-            this.productosCarrito=await getCarrito()
+            this.productosCarrito = await getCarrito()
             this.productosAll = [
                 ...this.productosAbrigo,
                 ...this.productosCamiseta,
@@ -140,22 +143,38 @@ export class productos extends LitElement {
             this.handleProductosAllUpdated();
         }
     }
-    async addCarrito() {
-
+    verificarExistencia(key, valor) {
+        // Validar y actualizar el JSON
+        const data = this.productosCarrito;
+        for (const element of data) {
+            for (const clave in element) {
+                if (clave === key) {
+                    if (element[clave] === valor) {
+                        valor = Element.cantidad + 1
+                        // Elimine este Elemento 
+                        return valor
+                    }
+                }
+            }
+        }
+        return 1
     }
+
+
     handleProductosAllUpdated(e) {
         let id = e.target.parentElement.parentElement.dataset.id;
+        let json = {};
         let partes = id.split("-");
         let primeraParte = partes[0]; // "abrigo"
         let segundaParte = partes[1];
-        let cantidadDatos = Object.keys(this.productosCarrito).length;
-        let json = {};
         json[`${primeraParte}Id`] = parseInt(segundaParte);
-        json["cantidad"] = 1;
+        let cantidadDatos = Object.keys(this.productosCarrito).length;
         json["id"] = parseInt(cantidadDatos);
-        agregarAlCarrito(json)
+        let primeraKey = Object.keys(json)[0];
+        let cantidad = this.verificarExistencia(primeraKey, parseInt(segundaParte))
+        console.log(cantidad);
+        json["cantidad"] = parseInt(cantidad);
         this.loadProducts()
-        console.log(json);
     }
 }
 
@@ -232,10 +251,10 @@ export class Barra extends LitElement {
         }
         
     `;
-    contenidoHTML(base, producto) {
+    contenidoHTML(base, producto, eliminador) {
         return html`
         <div class="producto ">
-        <img src="${base.imagen}" alt="${base.nombre}">
+            <img src="${base.imagen}" alt="${base.nombre}">
             <div>
                 <small>Titulo</small>
                 <marquee behavior="scroll" direction="left" style="white-space: nowrap; overflow: hidden;">
@@ -254,28 +273,48 @@ export class Barra extends LitElement {
                 <small>SubTotal</small>
                 <p>$ ${(producto.cantidad * base.precio).toLocaleString()}</p>
             </div>
-            <a class"eliminar" href="#">
+            <a @click="${this.handleProductosAllUpdated}" data-id="${eliminador}" class"eliminar" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #58720b;transform: ;msFilter:;"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
             </a>
             </div>    
         `;
     }
+    handleProductosAllUpdated(e){
+        let id=e.currentTarget.dataset.id;
+        eliminarDelCarrito(id)
+        this.requestUpdate();
+    }
     render() {
         return html`
         ${this.productosCarrito.map(producto => {
             if (Object.keys(producto)[0] === "abrigoId") {
-                this.dato = this.productosAbrigo.filter(item => parseFloat(item.id) === producto.abrigoId);
-                return this.contenidoHTML(...this.dato, producto);
+                this.dato = this.productosAbrigo.filter(item => {
+                    let id = item.id.toString(); // Convertir el id en una cadena
+                    let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
+                    let ultimaParte = partes[partes.length - 1]; // Obtener la última parte de la cadena
+                    return parseFloat(ultimaParte) === producto.abrigoId
+                });
+                return this.contenidoHTML(...this.dato, producto, producto.id);
             }
             if (Object.keys(producto)[0] === "pantalonId") {
                 this.dato = this.productosPantalon;
-                this.dato = this.productosAbrigo.filter(item => parseFloat(item.id) === producto.pantalonId);
-                return this.contenidoHTML(...this.dato, producto);
+                this.dato = this.productosAbrigo.filter(item => {
+                    let id = item.id.toString(); // Convertir el id en una cadena
+                    let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
+                    let ultimaParte = partes[partes.length - 1]; // Obtener la última parte de la cadena
+                    return parseFloat(ultimaParte) === producto.pantalonId
+                });
+                return this.contenidoHTML(...this.dato, producto, producto.id);
             }
             if (Object.keys(producto)[0] === "camisetaId") {
                 this.dato = this.productosCamiseta;
-                this.dato = this.productosAbrigo.filter(item => parseFloat(item.id) === producto.camisetaId);
-                return this.contenidoHTML(...this.dato, producto);
+                this.dato = this.productosAbrigo.filter(item => {
+                    let id = item.id.toString(); // Convertir el id en una cadena
+                    let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
+                    let ultimaParte = partes[partes.length - 1]; // Obtener la última parte de la cadena
+                    return parseFloat(ultimaParte) === producto.camisetaId
+                });
+                return this.contenidoHTML(...this.dato, producto, producto.id);
             }
         })}
         `;

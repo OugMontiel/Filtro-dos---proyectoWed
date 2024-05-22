@@ -27,3 +27,8 @@ Dispositivos de escritorio y Celulares
 
 ![FoodPc](Storage/video/FoodPc.gif)
 
+# Errores
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd649e87-ff12-4629-b13c-7a11e647c03e/0f54f04d-d791-42e4-ac71-bc42621debc0/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd649e87-ff12-4629-b13c-7a11e647c03e/b7413e53-d923-4c8a-9f17-380c4022f49a/Untitled.png)
