@@ -154,6 +154,7 @@ export class productos extends LitElement {
         json["cantidad"] = 1;
         json["id"] = parseInt(cantidadDatos);
         agregarAlCarrito(json)
+        this.loadProducts()
         console.log(json);
     }
 }
