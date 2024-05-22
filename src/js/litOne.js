@@ -311,7 +311,13 @@ export class Barra extends LitElement {
                     let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
                     let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
                     return ultimaParte === producto.abrigoId
-                }).precio;
+                });
+                if (precio) {
+                    precio = precio.precio; // Acceder a la propiedad 'precio' solo si se encontró un objeto
+                } else {
+                    // Manejar el caso en el que no se encontró ningún objeto
+                    console.log("No se encontró abrigo", producto.abrigoId);
+                }
 
             } else if (Object.keys(producto)[1] === "pantalonId") {
                 // Obtener el precio del pantalón según su ID
@@ -319,8 +325,14 @@ export class Barra extends LitElement {
                     let id = item.id; // Convertir el id en una cadena
                     let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
                     let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
-                    return ultimaParte === producto.abrigoId
-                }).precio;
+                    return ultimaParte === producto.pantalonId
+                });
+                if (precio) {
+                    precio = precio.precio; // Acceder a la propiedad 'precio' solo si se encontró un objeto
+                } else {
+                    // Manejar el caso en el que no se encontró ningún objeto
+                    console.log("No se encontró panatalon", producto.pantalonId);
+                }
 
             } else if (Object.keys(producto)[1] === "camisetaId") {
                 // Obtener el precio de la camiseta según su ID
@@ -328,13 +340,19 @@ export class Barra extends LitElement {
                     let id = item.id; // Convertir el id en una cadena
                     let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
                     let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
-                    return ultimaParte === producto.abrigoId
-                }).precio;
+                    return ultimaParte === producto.camisetaId
+                });
+                if (precio) {
+                    precio = precio.precio; // Acceder a la propiedad 'precio' solo si se encontró un objeto
+                } else {
+                    // Manejar el caso en el que no se encontró ningún objeto
+                    console.log("No se encontró ningúna camisa", producto.camisetaId);
+                }
             }
 
             // Calculate the subtotal for each product
             let subtotal = producto.cantidad * precio;
-            
+
             // Add the subtotal to the total
             total += subtotal;
         });
@@ -351,26 +369,23 @@ export class Barra extends LitElement {
                     let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
                     return ultimaParte === producto.abrigoId
                 });
-                console.log(this.dato);
                 return this.contenidoHTML(...this.dato, producto, producto.id);
             }
             if (Object.keys(producto)[1] === "pantalonId") {
-                this.dato = this.productosPantalon;
-                this.dato = this.productosAbrigo.filter(item => {
+                this.dato = this.productosPantalon.filter(item => {
                     let id = item.id; // Convertir el id en una cadena
                     let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
                     let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
-                    return parseFloat(ultimaParte) === producto.pantalonId
+                    return ultimaParte === producto.pantalonId
                 });
                 return this.contenidoHTML(...this.dato, producto, producto.id);
             }
             if (Object.keys(producto)[1] === "camisetaId") {
-                this.dato = this.productosCamiseta;
-                this.dato = this.productosAbrigo.filter(item => {
+                this.dato = this.productosCamiseta.filter(item => {
                     let id = item.id; // Convertir el id en una cadena
                     let partes = id.split("-"); // Dividir la cadena en partes utilizando el guión "-"
                     let ultimaParte = partes[partes.length - 1].toString(); // Obtener la última parte de la cadena
-                    return parseFloat(ultimaParte) === producto.camisetaId
+                    return ultimaParte === producto.camisetaId
                 });
                 return this.contenidoHTML(...this.dato, producto, producto.id);
             }
