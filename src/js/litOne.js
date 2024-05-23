@@ -181,7 +181,7 @@ export class productos extends LitElement {
         json["cantidad"] = parseInt(cantidad);
         agregarAlCarrito(json)
         this.loadProducts()
-        location.href="/"
+        location.href = "/"
     }
 }
 
@@ -266,26 +266,54 @@ export class Barra extends LitElement {
             display:flex;
             flex-direction: row;
         }
-    `;
+        @media screen and (max-width: 600px) {
+            .producto {
+                position:relative;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                padding: .5em; 
+                height: auto
+            }
+            .imgen{
+                grid-area:2/1/5/2
+            }
+            .Titulo{
+                grid-area:1/1/2/3
+            }
+            marquee {
+                max-width: 80%;
+            }
+            .producto div {
+                align-items: center;
+            }
+            svg{
+                position: absolute;
+                top: 0;
+                right: 0px;
+                padding: .5em; 
+            }
+        }
+        `;
     contenidoHTML(base, producto, eliminador) {
         return html`
         <div class="producto ">
-            <img src="${base.imagen}" alt="${base.nombre}">
-            <div>
+            <img class="imgen" src="${base.imagen}" alt="${base.nombre}">
+            <div class="Titulo">
                 <small>Titulo</small>
                 <marquee behavior="scroll" direction="left" style="white-space: nowrap; overflow: hidden;">
                 ${base.nombre}
                 </marquee>
             </div>
-            <div>
+            <div class="Cantidad">
                 <small>Cantidad</small>
                 <p>${producto.cantidad}</p>
             </div>
-            <div>
+            <div class="Precio">
                 <small>Precio</small>
                 <p>$ ${base.precio.toLocaleString()}</p>
             </div>
-            <div>
+            <div class="SubTotal">
                 <small>SubTotal</small>
                 <p>$ ${(producto.cantidad * base.precio).toLocaleString()}</p>
             </div>
