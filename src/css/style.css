@@ -9,7 +9,8 @@
     font-family: 'Rubik', sans-serif;
 }
 
-li, ul {
+li,
+ul {
     list-style: none;
 }
 
@@ -17,36 +18,40 @@ a {
     text-decoration: none;
 }
 
-body{
+body {
     background: var(--color-fondo);
     height: 100vh;
 }
+
 main {
-    
+
     display: grid;
     grid-template-columns: 1fr 4fr;
     /* padding: 1em; */
-    
+
 }
+
 /* Barra derrecha */
 
 .Barra {
-    position:sticky ;
+    position: sticky;
     grid-column: 1;
     top: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2em 0 ;
+    padding: 2em 0;
 }
 
-.Barra a, .Barra h1 {
-    padding: 0 2em ;
+.Barra a,
+.Barra h1 {
+    padding: 0 2em;
     color: var(--color-letras);
 }
-.Barra p{
-    padding: 0 2em ;
+
+.Barra p {
+    padding: 0 2em;
     color: var(--color-producto);
 }
 
@@ -56,16 +61,17 @@ main {
 
 .Selecion {
     text-align: center;
-    background-color: var(--color-w);;
+    background-color: var(--color-w);
+    ;
     border-radius: 2em 0 0 2em;
-    font-weight: bold;    
+    font-weight: bold;
 }
 
-.Selecion a{
+.Selecion a {
     color: var(--color-Boton-letras);
 }
 
-/* mostrador  */
+/* Barra izquierda  */
 
 .content {
     margin: 1em 1em 1em 0 ;
@@ -86,33 +92,41 @@ main {
 
 /* Barra dos para el responsive  */
 
-.BarraDos {
-    display: none;
-}
 
 .btn {
     display: none;
 }
 
 @media screen and (max-width: 600px) {
-    main {
-        grid-template-columns: 1fr;
-        grid-template-rows: 8% auto 8%;
+    body {
+        padding-top: 5em;
+    }
 
-        padding: .5em;
+    main {
+        grid-template-columns: 0;
+        /* grid-template-rows: 8% auto 8%; */
+
+        /* padding: .5em; */
     }
 
     .Barra {
-        height: 3em;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: auto;
         flex-direction: row;
-        padding: 1em 0;
+        align-items: center;
+        padding: 0;
+        background-color: var(--color-Boton);
     }
 
-    .Barra ul {
-        display: none;
+    .Barra ul li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .Barra p:last-child {
+    .Barra p {
         display: none;
     }
 
@@ -158,8 +172,14 @@ main {
     }
 
     .content {
+        margin: 1em;
         padding: 1em;
         border-radius: 2em;
+        overflow-y: auto;
+        min-height: 80vh;
+    }
+    .content article {
+        height: 100%;
     }
 
     .content h1 {
@@ -176,11 +196,14 @@ main {
     button {
         width: 5em;
     }
+    .BarraDos{
+        width: 100%;
 
-    .BarraDos {
+    }
+
+    .BarraDos p{
         display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        padding: 1em 0;
+        color: var(--color-Boton-letras);
+        
     }
 }

@@ -100,6 +100,13 @@ export class productos extends LitElement {
         background: var(--color-w);
         color: var(--color-fondo);
     }
+    @media screen and (max-width: 600px) {
+        :host{
+            padding:1em;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
     `;
     connectedCallback() {
         super.connectedCallback();
