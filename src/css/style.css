@@ -31,7 +31,9 @@ main {
 /* Barra derrecha */
 
 .Barra {
-    /* position:fixed ; */
+    position:sticky ;
+    grid-column: 1;
+    top: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -72,6 +74,8 @@ main {
     background: var(--color-w);
     /* height: 90vh; */
     overflow-y: auto;
+
+    grid-column: 2;
 }
 
 .content h1 {
