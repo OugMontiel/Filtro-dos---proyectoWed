@@ -148,6 +148,9 @@ main {
         background: transparent;
         /* color: var(--color-Boton-letras); */
     }
+    .Barra button a{
+        padding: 0;
+    }
 
     .visible {
         display: flex;
